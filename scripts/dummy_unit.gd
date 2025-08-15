@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 				#is_follow = false
 				#print("found")
 				print("stop")
-				pass
+				#pass
 		# Calculate distance to the target
 		var distance = global_position.distance_to(target_position)
 		#print("distance:", distance)
@@ -46,9 +46,10 @@ func _physics_process(delta: float) -> void:
 		if distance < distance_threshold:
 			is_follow = false
 			print("target_position stop")
-			pass
-	pass
+			#pass
+	#pass
 
+@rpc("any_peer","call_local")
 func set_follow_target(pos:Vector3):
 	target_position = pos
 	is_follow = true

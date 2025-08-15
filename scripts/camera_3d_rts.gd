@@ -135,7 +135,8 @@ func _handle_move_click() -> void:
 		if unit:
 			#unit.target_position = collision_point
 			if unit.has_method("set_follow_target"):
-				unit.set_follow_target(collision_point)
+				#unit.set_follow_target(collision_point)
+				unit.set_follow_target.rpc(collision_point)
 			pass
 		if target:
 			target.global_position = collision_point

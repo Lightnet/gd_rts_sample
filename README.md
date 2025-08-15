@@ -33,12 +33,14 @@
 - [x] sent message test
 - [ ] dev console / cheat
 - [ ] build base
-- [ ] select move unit
+- [x] select move unit
 - [ ] attack unit
 - [ ] team unit
+
 ## network
 - [ ] build base
 - [ ] select move unit
+
   Note this is work in progress.
 
 # Credits:
