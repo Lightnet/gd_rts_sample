@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://p3q3kmjddt8n"]
+
+[ext_resource type="Script" uid="uid://lle1fy2nktdr" path="res://scripts/dummy_unit.gd" id="1_l1gro"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xowi"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a202f"]
+
+[node name="DummyUnit" type="CharacterBody3D"]
+script = ExtResource("1_l1gro")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4xowi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_a202f")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
