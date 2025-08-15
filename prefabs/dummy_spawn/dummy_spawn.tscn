@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb48xaallk3dw"]
+
+[ext_resource type="Script" uid="uid://d3irmws5kl88v" path="res://prefabs/dummy_spawn/dummy_spawn.gd" id="1_fax20"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilnku"]
+albedo_color = Color(0, 0.486901, 0.313599, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fax20"]
+material = SubResource("StandardMaterial3D_ilnku")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4dic2"]
+
+[node name="DummySpawn" type="Node3D"]
+script = ExtResource("1_fax20")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_fax20")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnPoint"]
+visible = false
+mesh = SubResource("CapsuleMesh_4dic2")

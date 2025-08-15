@@ -1,6 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://p3q3kmjddt8n"]
+[gd_scene load_steps=6 format=3 uid="uid://p3q3kmjddt8n"]
 
 [ext_resource type="Script" uid="uid://lle1fy2nktdr" path="res://scripts/dummy_unit.gd" id="1_l1gro"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l1gro"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:target_position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:is_follow")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4xowi"]
 
@@ -9,8 +23,16 @@
 [sub_resource type="BoxMesh" id="BoxMesh_l1gro"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[node name="DummyUnit" type="CharacterBody3D"]
+[node name="DummyUnit" type="CharacterBody3D" groups=["unit"]]
 script = ExtResource("1_l1gro")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_l1gro")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+height = 2.0
+debug_enabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4xowi")
@@ -18,13 +40,8 @@ shape = SubResource("CapsuleShape3D_4xowi")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_a202f")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
-height = 2.0
-debug_enabled = true
-
-[node name="StateMachine" type="Node" parent="."]
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23074, -0.448588)
 mesh = SubResource("BoxMesh_l1gro")
+
+[node name="StateMachine" type="Node" parent="."]

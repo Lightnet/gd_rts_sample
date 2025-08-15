@@ -23,8 +23,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				_handle_move_click()
+				_handle_select_unit()
 			elif event.button_index == MOUSE_BUTTON_RIGHT:
+				_handle_move_click()
 				_is_rotating = true
 				_last_mouse_position = get_viewport().get_mouse_position()
 			elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -78,6 +79,42 @@ func _process(delta: float) -> void:
 		# Keep y constant to avoid flying
 		global_movement.y = 0
 		global_position += global_movement
+
+#moving unit?
+func _handle_select_unit()->void:
+	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+	var ray_origin: Vector3 = project_ray_origin(mouse_pos)
+	var ray_direction: Vector3 = project_ray_normal(mouse_pos)
+	var ray_length: float = 1000.0
+	var ray_end: Vector3 = ray_origin + ray_direction * ray_length
+	
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	var result: Dictionary = space_state.intersect_ray(query)
+	
+	if result:
+		var collision_point: Vector3 = result.position
+		var collider: Node = result.collider
+		print("Hit at: ", collision_point, " on object: ", collider.name)
+		
+		if collider:
+			#unit.target_position = collision_point
+			#if unit.has_method("set_follow_target"):
+				#unit.set_follow_target(collision_point)
+				
+			if collider.is_in_group("unit"):
+				print("found unit")
+				unit = collider
+				pass
+			else:
+				unit=null
+			pass
+		if target:
+			target.global_position = collision_point
+	else:
+		unit=null
+		print("Deselect Unit")
+	pass
 
 func _handle_move_click() -> void:
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()

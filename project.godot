@@ -19,11 +19,17 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/global.gd"
 GameNetwork="*res://scripts/game_network.gd"
+Console="*res://addons/console/console.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/console/plugin.cfg")
 
 [global_group]
 
 notify=""
 building="building unit"
+unit=""
 
 [input]
 

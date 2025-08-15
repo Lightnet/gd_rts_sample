@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		 # Rotate to face the direction of movement
 		if direction.length() > 0:  # Ensure there's a valid direction to rotate toward
 			var target_rotation = atan2(direction.x, direction.z)  # Calculate angle in XZ plane
-			print("target_rotation: ", target_rotation)
+			#print("target_rotation: ", target_rotation)
 			target_rotation = target_rotation + deg_to_rad(180) #match face -z direction
 			var current_rotation = rotation.y
 			# Smoothly interpolate the Y rotation
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 				pass
 		# Calculate distance to the target
 		var distance = global_position.distance_to(target_position)
-		print("distance:", distance)
+		#print("distance:", distance)
 		# Check if close enough to the target
 		if distance < distance_threshold:
 			is_follow = false
