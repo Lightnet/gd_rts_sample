@@ -15,6 +15,12 @@ const USER_DATABASE = {
 var players: Dictionary = {}  # Key: peer_id (int), Value: player_info (Dictionary)
 var local_player_id: int = 0  # Local peer ID
 
+# This is the local player info. This should be modified locally
+# before the connection is made. It will be passed to every other peer.
+# For example, the value of "name" can be set to something the player
+# entered in a UI scene.
+var player_info = {"name": "Name"}
+
 # Signals for game logic
 signal player_connected(peer_id: int, player_info: Dictionary)
 signal player_failed_connected
@@ -43,7 +49,12 @@ func _network_host(port: int = DEFAULT_PORT, max_players: int = MAX_PLAYERS) -> 
 		return false
 	
 	multiplayer.multiplayer_peer = peer
-	_add_player(local_player_id, {"username": "Server", "position": Vector2.ZERO})
+	_add_player(local_player_id, {
+		#"username": "Server",
+		"username": player_info["name"],
+		# player_info
+		"position": Vector2.ZERO
+	})
 	print("Server started on port %d" % port)
 	return true
 	#pass
@@ -57,7 +68,11 @@ func _network_join(ip: String = DEFAULT_IP, port: int = DEFAULT_PORT) -> bool:
 	
 	multiplayer.multiplayer_peer = peer
 	local_player_id = multiplayer.get_unique_id()
-	_add_player(local_player_id, {"username": "Player_%d" % local_player_id, "position": Vector2.ZERO})
+	_add_player(local_player_id, {
+		#"username": "Player_%d" % local_player_id,
+		"username": player_info["name"],
+		"position": Vector2.ZERO
+	})
 	print("Attempting to join server at %s:%d" % [ip, port])
 	return true
 

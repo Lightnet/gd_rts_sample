@@ -34,3 +34,23 @@ func hide_connection_status()-> void:
 	if len(connectionstatuses) == 1:
 		connectionstatuses[0].hide()
 	#pass
+
+
+func generate_random_name(min_length: int = 3, max_length: int = 8) -> String:
+	var vowels = ["a", "e", "i", "o", "u"]
+	var consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v", "w", "y"]
+	var name_length = randi_range(min_length, max_length)
+	var _name = ""
+	var use_vowel = randi() % 2 == 0
+	
+	for i in range(name_length):
+		if use_vowel:
+			_name += vowels[randi() % vowels.size()]
+		else:
+			_name += consonants[randi() % consonants.size()]
+		use_vowel = !use_vowel
+	
+	# Capitalize first letter
+	_name = _name.capitalize()
+	
+	return _name

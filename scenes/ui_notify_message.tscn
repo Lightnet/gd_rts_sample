@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgj1e0mb67aie"]
 
-[ext_resource type="Script" uid="uid://s8nwn45s5lib" path="res://scripts/ui_notify_message.gd" id="1_mkbfv"]
+[ext_resource type="Script" uid="uid://s8nwn45s5lib" path="res://scripts/ui/ui_notify_message.gd" id="1_mkbfv"]
 [ext_resource type="Texture2D" uid="uid://c2y2w6gjktqn7" path="res://icon.svg" id="1_oiv38"]
 
 [node name="UINotifyMessage" type="PanelContainer"]

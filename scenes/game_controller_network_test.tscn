@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4g3kokl4vvwm"]
 
-[ext_resource type="Script" uid="uid://dqem642ucl86q" path="res://scripts/ui_network_test.gd" id="1_hlaff"]
-[ext_resource type="Script" uid="uid://ckpb8wbcs2pnq" path="res://scripts/ui_notify.gd" id="2_1rbfn"]
-[ext_resource type="Script" uid="uid://oq02j5pv1ois" path="res://scripts/ui_chat.gd" id="3_7nk8c"]
+[ext_resource type="Script" uid="uid://dqem642ucl86q" path="res://scripts/ui/ui_network_test.gd" id="1_hlaff"]
+[ext_resource type="Script" uid="uid://ckpb8wbcs2pnq" path="res://scripts/ui/ui_notify.gd" id="2_1rbfn"]
+[ext_resource type="Script" uid="uid://oq02j5pv1ois" path="res://scripts/ui/ui_chat.gd" id="3_7nk8c"]
 
 [node name="GameController" type="Node"]
 

@@ -38,6 +38,8 @@
 	- n key
 - [ ] recycle
 	- r key
+	
+	
   Work in progress.
 
 # Features:
@@ -45,10 +47,10 @@
 - [x] join
 - [x] notify message
 - [x] sent message test
-- [ ] dev console / cheat
+- [x] dev console / cheat
 - [ ] building
 	- [ ] build base
-	- [ ] select building
+	- [x] select building
 	- [x] build unit
 - [ ] unit
 	- [x] select move unit
@@ -58,10 +60,14 @@
 ## network
 - [ ] build base
 - [x] select move unit
-- [ ] 
+- [ ] ui host and join
+- [ ] notify message
+- [ ] chat message
 
   Note this is work in progress.
 
 # Credits:
+- Grok
+	- From x.com by using reference and help. 
 - https://docs.godotengine.org/en/stable/tutorials/physics/using_character_body_2d.html#detecting-collisions
 - https://www.youtube.com/watch?v=fS0IhyZrzts

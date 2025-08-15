@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="gd_rts_sample"
+config/tags=PackedStringArray("3d", "base", "multiplayer", "strategy")
 run/main_scene="uid://beu0yhf3pk4t"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
