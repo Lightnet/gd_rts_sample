@@ -2,6 +2,7 @@ extends Camera3D
 
 @export var target: Node3D
 @export var unit: Node3D
+@export var building_unit: Node3D
 @export var units: Array[Node3D] = []
 
 # Camera movement parameters
@@ -13,6 +14,8 @@ extends Camera3D
 @export var is_edge_border:bool = false
 @export var edge_border: float = 10.0  # Pixels from edge for screen-edge panning
 @export var rotation_speed: float = 2.0
+
+@onready var ui_building_info: PanelContainer = $"../CanvasLayer/UICommandCenter/UI_BuildingInfo"
 
 # Internal variables
 var _is_rotating: bool = false
@@ -32,6 +35,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				_zoom(-zoom_speed)
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				_zoom(zoom_speed)
+				
+	if event.is_action_pressed("recruit"):
+		if building_unit:
+			print("recruit press")
+			building_unit.request_spawn()
 	
 	# Handle rotation release
 	if event is InputEventMouseButton and !event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -105,10 +113,15 @@ func _handle_select_unit()->void:
 			if collider.is_in_group("unit"):
 				print("found unit")
 				unit = collider
-				pass
+				#pass
+			elif collider.is_in_group("building"):
+				building_unit = collider
+				# building_unit:BuildingUnit
+				ui_building_info.set_building_info(collider.building_unit)
+				#pass
 			else:
 				unit=null
-			pass
+			#pass
 		if target:
 			target.global_position = collision_point
 	else:

@@ -25,6 +25,20 @@
 - Hold right to rotate camera
 - Left Mouse Click = select unit
 - Right Mouse Click = move unit
+- select unit to build g key
+
+# key input:
+- [ ] recruit
+	- g key
+- [ ] build
+	- b key
+- [ ] train
+	- h key
+- [ ] sell
+	- n key
+- [ ] recycle
+	- r key
+  Work in progress.
 
 # Features:
 - [x] host
@@ -32,14 +46,19 @@
 - [x] notify message
 - [x] sent message test
 - [ ] dev console / cheat
-- [ ] build base
-- [x] select move unit
-- [ ] attack unit
-- [ ] team unit
+- [ ] building
+	- [ ] build base
+	- [ ] select building
+	- [x] build unit
+- [ ] unit
+	- [x] select move unit
+	- [ ] attack unit
+	- [ ] team unit
 
 ## network
 - [ ] build base
-- [ ] select move unit
+- [x] select move unit
+- [ ] 
 
   Note this is work in progress.
 
