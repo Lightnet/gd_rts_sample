@@ -117,7 +117,8 @@ func _handle_select_unit()->void:
 			elif collider.is_in_group("building"):
 				building_unit = collider
 				# building_unit:BuildingUnit
-				ui_building_info.set_building_info(collider.building_unit)
+				#ui_building_info.set_building_info(collider.building_unit)
+				ui_building_info.set_building_node(collider)
 				#pass
 			else:
 				unit=null

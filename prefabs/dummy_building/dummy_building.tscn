@@ -1,6 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfvarodp52hmd"]
+[gd_scene load_steps=6 format=3 uid="uid://cfvarodp52hmd"]
 
 [ext_resource type="Script" uid="uid://cetwk3dcvf2bq" path="res://scripts/unit/dummy_building.gd" id="1_1ueep"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1ueep"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m60q0"]
 
@@ -12,6 +20,9 @@ material = SubResource("StandardMaterial3D_m60q0")
 
 [node name="DummyBuilding" type="StaticBody3D" groups=["building"]]
 script = ExtResource("1_1ueep")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1ueep")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_m60q0")
