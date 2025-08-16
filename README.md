@@ -49,10 +49,14 @@
 - [x] sent message test
 - [x] dev console / cheat
 - [ ] building
-	- [ ] build base
+	- [x] place building
+	- [x] delete building
 	- [x] select building
 	- [x] build unit
 	- [x] time build unit
+	- [x] NavigationObstacle3D
+		- Note rebuild navigation mesh has bugs.
+		- Note building must place in NavigationObstacle3D as child
 - [ ] unit
 	- [x] select move unit
 	- [x] spawn unit

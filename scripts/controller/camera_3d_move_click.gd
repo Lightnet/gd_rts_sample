@@ -31,7 +31,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				if target:
 					target.global_position = collision_point
 			else:
-				print("No collision detected")
+				#print("No collision detected")
+				pass
 func _ready() -> void:
 	pass
 

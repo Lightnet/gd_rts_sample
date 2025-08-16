@@ -155,7 +155,8 @@ func _handle_move_click() -> void:
 		if target:
 			target.global_position = collision_point
 	else:
-		print("No collision detected")
+		#print("No collision detected")
+		pass
 
 func _zoom(amount: float) -> void:
 	var new_pos = position + (transform.basis.z * amount)

@@ -39,7 +39,7 @@ func request_stop_build():
 	if multiplayer.is_server():
 		stop_build_unit.rpc()
 	else:
-		remote_start_build.rpc_id(1)
+		remote_stop_build.rpc_id(1)
 	pass
 	
 @rpc("any_peer","call_remote")
@@ -78,3 +78,21 @@ func create_unit():
 	get_tree().current_scene.add_child(dummy)
 	dummy.global_position = spawn_point.global_position
 	#pass
+
+func request_delete():
+	if multiplayer.is_server():
+		remove_node.rpc()
+	else:
+		remote_delete.rpc_id(1)
+	pass
+@rpc("any_peer","call_remote")
+func remote_delete():
+	remove_node.rpc()
+	pass
+@rpc("authority","call_local")	
+func remove_node():
+	queue_free()
+	pass
+
+
+# 

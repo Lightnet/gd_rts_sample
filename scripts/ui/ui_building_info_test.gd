@@ -38,3 +38,11 @@ func _on_btn_stop_pressed() -> void:
 			building_node.request_stop_build()
 			#pass
 	#pass
+
+
+func _on_btn_delete_pressed() -> void:
+	if building_node:
+		building_node.has_method("request_delete")
+		building_node.request_delete()
+		building_node=null
+	pass
