@@ -2,10 +2,11 @@ extends Control
 
 @onready var line_edit_message: LineEdit = $VBoxContainer/LineEdit_Message
 
-
 func _on_btn_sent_message_pressed() -> void:
 	if multiplayer.is_server():
-		sent_message.rpc("PEER ID: 1" + " > " +line_edit_message.text)
+		var player_name = GameNetwork.get_id_player_name(1)
+		#sent_message.rpc("PEER ID: 1" + " > " +line_edit_message.text)
+		sent_message.rpc(player_name + " > " +line_edit_message.text)
 	else:
 		request_message.rpc_id(1,line_edit_message.text) #pass, single message
 	pass
@@ -29,7 +30,9 @@ func sent_message_id(message,id):
 	print("authority >> call_local >> sent_message_id ID:", id)
 	# later use to get user name from list
 	#Global.notify_message(message)
-	var msg = "PEER ID:" + str(id) + " > " + message
+	var player_name = GameNetwork.get_id_player_name(id)
+	#var msg = "PEER ID:" + str(id) + " > " + message
+	var msg = player_name + " > " + message
 	sent_message.rpc(msg)
 	#pass
 

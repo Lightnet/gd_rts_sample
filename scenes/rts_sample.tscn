@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://beu0yhf3pk4t"]
+[gd_scene load_steps=19 format=3 uid="uid://beu0yhf3pk4t"]
 
 [ext_resource type="Script" uid="uid://bu5edbq3di16v" path="res://scripts/controller/camera_3d_rts.gd" id="1_pibyb"]
 [ext_resource type="PackedScene" uid="uid://cfvarodp52hmd" path="res://prefabs/dummy_building/dummy_building.tscn" id="2_pyqy2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dndt0hcj6m4q5" path="res://scripts/ui/ui_building_info_test.gd" id="7_pwoe4"]
 [ext_resource type="Script" uid="uid://bb8dsb82otm58" path="res://scripts/ui/ui_network.gd" id="8_pwoe4"]
 [ext_resource type="Script" uid="uid://dgrvfnx51babe" path="res://scripts/ui/ui_debug.gd" id="10_85qf4"]
+[ext_resource type="Script" uid="uid://oq02j5pv1ois" path="res://scripts/ui/ui_chat.gd" id="11_feyi7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -461,5 +462,35 @@ text = "Player:"
 layout_mode = 2
 text = "None"
 
+[node name="UIChat" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_feyi7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIChat"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -295.0
+offset_right = 206.0
+offset_bottom = -216.0
+grow_vertical = 0
+
+[node name="LineEdit_Message" type="LineEdit" parent="CanvasLayer/UIChat/VBoxContainer"]
+layout_mode = 2
+text = "TA"
+
+[node name="btn_sent_message" type="Button" parent="CanvasLayer/UIChat/VBoxContainer"]
+layout_mode = 2
+text = "Sent Message"
+
 [connection signal="pressed" from="CanvasLayer/UINetwork/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/btn_host" to="CanvasLayer/UINetwork" method="_on_btn_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/UINetwork/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/btn_join" to="CanvasLayer/UINetwork" method="_on_btn_join_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIChat/VBoxContainer/btn_sent_message" to="CanvasLayer/UIChat" method="_on_btn_sent_message_pressed"]

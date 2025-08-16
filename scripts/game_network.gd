@@ -152,3 +152,12 @@ func _on_server_disconnected():
 	multiplayer.multiplayer_peer = null
 	emit_signal("server_disconnected")
 	Global.notify_message("server_disconnected")
+
+func get_id_player_name(id:int):
+	var _name:String = ""
+	for i in players:
+		if i == id:
+			_name = players[i]["username"]
+			break
+	return _name
+	#pass
