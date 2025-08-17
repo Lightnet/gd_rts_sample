@@ -26,7 +26,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if result:
 				var collision_point: Vector3 = result.position
 				var collider: Node = result.collider
-				print("Hit at: ", collision_point, " on object: ", collider.name)
+				#print("Hit at: ", collision_point, " on object: ", collider.name)
 				Global.target = collision_point
 				if target:
 					target.global_position = collision_point

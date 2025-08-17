@@ -1,18 +1,21 @@
-[gd_scene load_steps=22 format=3 uid="uid://beu0yhf3pk4t"]
+[gd_scene load_steps=28 format=3 uid="uid://dp873vjbsbqyn"]
 
-[ext_resource type="Script" uid="uid://bu5edbq3di16v" path="res://scripts/controller/camera_3d_rts.gd" id="1_pibyb"]
-[ext_resource type="Script" uid="uid://bceuyu8bdrs2t" path="res://scripts/navigation/navigation_region_3d.gd" id="2_kcn4o"]
-[ext_resource type="PackedScene" uid="uid://cfvarodp52hmd" path="res://prefabs/dummy_building/dummy_building.tscn" id="2_pyqy2"]
-[ext_resource type="Script" uid="uid://bedahojcte42o" path="res://scripts/tests/g_target.gd" id="3_gm2dh"]
-[ext_resource type="PackedScene" uid="uid://p3q3kmjddt8n" path="res://prefabs/dummy_unit/dummy_unit.tscn" id="4_pwoe4"]
-[ext_resource type="Texture2D" uid="uid://c2y2w6gjktqn7" path="res://icon.svg" id="5_85qf4"]
-[ext_resource type="PackedScene" uid="uid://cb48xaallk3dw" path="res://prefabs/dummy_spawn/dummy_spawn.tscn" id="6_feyi7"]
-[ext_resource type="Script" uid="uid://ckpb8wbcs2pnq" path="res://scripts/ui/ui_notify.gd" id="7_gm2dh"]
-[ext_resource type="Script" uid="uid://dndt0hcj6m4q5" path="res://scripts/ui/ui_building_info_test.gd" id="7_pwoe4"]
-[ext_resource type="Script" uid="uid://bb8dsb82otm58" path="res://scripts/ui/ui_network.gd" id="8_pwoe4"]
-[ext_resource type="Script" uid="uid://dgrvfnx51babe" path="res://scripts/ui/ui_debug.gd" id="10_85qf4"]
-[ext_resource type="Script" uid="uid://oq02j5pv1ois" path="res://scripts/ui/ui_chat.gd" id="11_feyi7"]
-[ext_resource type="Script" uid="uid://dbf7djglng1ga" path="res://scripts/game/build_mode.gd" id="12_adjli"]
+[ext_resource type="Script" uid="uid://bab3jqsjbnexk" path="res://scripts/controller/camera_3d_rts_team.gd" id="1_pbhiv"]
+[ext_resource type="Script" uid="uid://bceuyu8bdrs2t" path="res://scripts/navigation/navigation_region_3d.gd" id="2_4nral"]
+[ext_resource type="Script" uid="uid://dyhqjlpyv6kiu" path="res://scripts/entity/building_unit.gd" id="4_4nral"]
+[ext_resource type="Script" uid="uid://bedahojcte42o" path="res://scripts/tests/g_target.gd" id="4_s0yod"]
+[ext_resource type="PackedScene" uid="uid://p3q3kmjddt8n" path="res://prefabs/dummy_unit/dummy_unit.tscn" id="5_tvv1p"]
+[ext_resource type="PackedScene" uid="uid://cb48xaallk3dw" path="res://prefabs/dummy_spawn/dummy_spawn.tscn" id="6_3lina"]
+[ext_resource type="Texture2D" uid="uid://c2y2w6gjktqn7" path="res://icon.svg" id="7_l7wtq"]
+[ext_resource type="Script" uid="uid://djhignm18u4oe" path="res://scripts/entity/unit_data.gd" id="7_s0yod"]
+[ext_resource type="Script" uid="uid://dndt0hcj6m4q5" path="res://scripts/ui/ui_building_info_test.gd" id="8_oi0rd"]
+[ext_resource type="Script" uid="uid://ckpb8wbcs2pnq" path="res://scripts/ui/ui_notify.gd" id="9_6q0ww"]
+[ext_resource type="Script" uid="uid://dgrvfnx51babe" path="res://scripts/ui/ui_debug.gd" id="11_0rm5j"]
+[ext_resource type="Script" uid="uid://cxnadyvmj7k8w" path="res://scripts/ui/ui_network_team.gd" id="11_pbhiv"]
+[ext_resource type="Script" uid="uid://oq02j5pv1ois" path="res://scripts/ui/ui_chat.gd" id="12_dwkw0"]
+[ext_resource type="PackedScene" uid="uid://us23xvj210u0" path="res://prefabs/dummy_building/dummy_team_building.tscn" id="13_ix3j4"]
+[ext_resource type="Script" uid="uid://dbf7djglng1ga" path="res://scripts/game/build_mode.gd" id="13_th4qi"]
+[ext_resource type="Script" uid="uid://7khosctc0n32" path="res://scripts/game/game_team_mode.gd" id="15_pbhiv"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kcn4o"]
 
@@ -29,12 +32,30 @@ sky = SubResource("Sky_a202f")
 tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4xowi"]
-vertices = PackedVector3Array(-47.5, 1, -0.5, -2, 1, -0.5, -1.75, 1, -1, 0.25, 1, -47.5, -47.5, 1, -47.5, 0.25, 1, -1, 2, 1, -1, 2.25, 1, 0.5, 6.5, 1, 3, 10, 1, 3, 10.25, 1, 4, 47.5, 1, 4, 47.5, 1, -47.5, -4.5, 1, 6.5, -3, 1, 6.5, -2, 1, 1, -47.5, 1, 7.75, -4.75, 1, 7.75, 6.25, 1, 8, 8.25, 1, 8, 8, 1, 5.25, 6, 1, 5, -2.5, 1, 6.75, 6, 1, 8.5, 6, 1, 3.25, 1.75, 1, 1.25, -2.5, 1, 8.25, 9.75, 1, 5.25, 10, 1, 8, 10.25, 1, 9, 47.5, 1, 9, -3.75, 1, 47.5, -3.75, 1, 8.75, -4.75, 1, 8.5, -47.5, 1, 47.5, -2.75, 1, 8.75, 6.25, 1, 10.25, 8, 1, 47.5, 8, 1, 10.25, 9.75, 1, 10.25, 47.5, 1, 47.5)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(6, 5, 3), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 6, 11), PackedInt32Array(11, 6, 3), PackedInt32Array(11, 3, 12), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 1), PackedInt32Array(1, 13, 0), PackedInt32Array(0, 13, 16), PackedInt32Array(13, 17, 16), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(22, 14, 15), PackedInt32Array(18, 23, 21), PackedInt32Array(7, 8, 24), PackedInt32Array(7, 24, 25), PackedInt32Array(25, 24, 21), PackedInt32Array(22, 15, 26), PackedInt32Array(26, 15, 25), PackedInt32Array(26, 25, 21), PackedInt32Array(26, 21, 23), PackedInt32Array(28, 19, 27), PackedInt32Array(27, 19, 20), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 10), PackedInt32Array(29, 10, 11), PackedInt32Array(29, 11, 30), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(33, 34, 16), PackedInt32Array(16, 17, 33), PackedInt32Array(26, 23, 35), PackedInt32Array(35, 23, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(35, 36, 32), PackedInt32Array(32, 36, 31), PackedInt32Array(31, 36, 37), PackedInt32Array(37, 38, 39), PackedInt32Array(29, 30, 39), PackedInt32Array(39, 30, 40), PackedInt32Array(39, 40, 37)]
+vertices = PackedVector3Array(-9, 1, 12.75, -7.5, 1, 12.75, -2, 1, 0.75, -1.75, 1, -1, -47.5, 1, 13.75, 1.75, 1, -1, 13.75, 1, -15, 13.75, 1, -16.5, 14.75, 1, -47.5, -47.5, 1, -47.5, 14.75, 1, -16.75, -9.25, 1, 13.75, 15.75, 1, -16.75, 16, 1, -15.5, 47.5, 1, -15.5, 47.5, 1, -47.5, 15.75, 1, -14.5, 14.25, 1, -14.5, 10.25, 1, 3.5, 10.25, 1, 4, 47.5, 1, 4, 2.25, 1, -0.75, 2.25, 1, 0.5, 6, 1, 3.25, 10, 1, 3, 6, 1, 8.25, 8.25, 1, 8, 8, 1, 5.25, 6, 1, 5, -7, 1, 14, 6.5, 1, 10.25, 6, 1, 10, -7, 1, 13, 1.75, 1, 1.25, -1.75, 1, 1.25, 9.75, 1, 5.25, 10, 1, 8, 10.25, 1, 9, 47.5, 1, 9, 9.75, 1, 10.25, 8, 1, 10.25, 8, 1, 47.5, 47.5, 1, 47.5, -7.25, 1, 15, -8.25, 1, 47.5, -8.25, 1, 15, -9.25, 1, 14.75, -47.5, 1, 47.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(6, 5, 7), PackedInt32Array(7, 5, 3), PackedInt32Array(7, 3, 8), PackedInt32Array(8, 3, 9), PackedInt32Array(9, 3, 4), PackedInt32Array(8, 10, 7), PackedInt32Array(0, 11, 4), PackedInt32Array(12, 10, 8), PackedInt32Array(12, 8, 13), PackedInt32Array(13, 8, 14), PackedInt32Array(14, 8, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(18, 16, 19), PackedInt32Array(19, 16, 14), PackedInt32Array(19, 14, 20), PackedInt32Array(14, 16, 13), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(24, 17, 18), PackedInt32Array(21, 5, 24), PackedInt32Array(24, 5, 17), PackedInt32Array(17, 5, 6), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 25), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 29), PackedInt32Array(22, 23, 33), PackedInt32Array(33, 23, 28), PackedInt32Array(1, 2, 34), PackedInt32Array(33, 28, 25), PackedInt32Array(25, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 32), PackedInt32Array(34, 32, 1), PackedInt32Array(36, 26, 35), PackedInt32Array(35, 26, 27), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 19), PackedInt32Array(37, 19, 20), PackedInt32Array(37, 20, 38), PackedInt32Array(41, 40, 39), PackedInt32Array(37, 38, 39), PackedInt32Array(39, 38, 42), PackedInt32Array(39, 42, 41), PackedInt32Array(29, 30, 43), PackedInt32Array(43, 30, 40), PackedInt32Array(43, 40, 41), PackedInt32Array(43, 41, 44), PackedInt32Array(44, 45, 43), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(46, 47, 4), PackedInt32Array(4, 11, 46)]
 agent_height = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xowi"]
 albedo_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+
+[sub_resource type="Resource" id="Resource_pbhiv"]
+script = ExtResource("4_4nral")
+name = ""
+health = 100.0
+health_max = 100.0
+team_id = 1
+ally_id = -1
+metadata/_custom_type_script = "uid://dyhqjlpyv6kiu"
+
+[sub_resource type="Resource" id="Resource_s0yod"]
+script = ExtResource("4_4nral")
+name = ""
+health = 100.0
+health_max = 100.0
+team_id = 2
+ally_id = -1
+metadata/_custom_type_script = "uid://dyhqjlpyv6kiu"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns6u7"]
 albedo_color = Color(0.921569, 0, 0, 1)
@@ -42,6 +63,15 @@ albedo_color = Color(0.921569, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_5t4e2"]
 material = SubResource("StandardMaterial3D_ns6u7")
 size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Resource" id="Resource_tvv1p"]
+script = ExtResource("7_s0yod")
+name = ""
+health = 100.0
+health_max = 100.0
+team_id = 2
+ally_id = -1
+metadata/_custom_type_script = "uid://djhignm18u4oe"
 
 [node name="Level" type="Node3D"]
 
@@ -60,12 +90,12 @@ environment = SubResource("Environment_noarx")
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 11.8258, 15.1336)
-script = ExtResource("1_pibyb")
+script = ExtResource("1_pbhiv")
 target = NodePath("../target")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navmesh"]]
 navigation_mesh = SubResource("NavigationMesh_4xowi")
-script = ExtResource("2_kcn4o")
+script = ExtResource("2_4nral")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 use_collision = true
@@ -126,21 +156,30 @@ size = Vector3(3, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 9)
 size = Vector3(3, 1, 1)
 
-[node name="DummyBuilding" parent="NavigationRegion3D" instance=ExtResource("2_pyqy2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61052, 0.89446, 7.59896)
+[node name="DummyBuilding1" parent="NavigationRegion3D" instance=ExtResource("13_ix3j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17609, 1, 13.8382)
+building_unit = SubResource("Resource_pbhiv")
+
+[node name="DummyBuilding2" parent="NavigationRegion3D" instance=ExtResource("13_ix3j4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9921, 1, -15.6705)
+building_unit = SubResource("Resource_s0yod")
 
 [node name="target" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17074, -6.06184)
-script = ExtResource("3_gm2dh")
+script = ExtResource("4_s0yod")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="target"]
 mesh = SubResource("BoxMesh_5t4e2")
 skeleton = NodePath("../..")
 
-[node name="DummyUnit" parent="." instance=ExtResource("4_pwoe4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+[node name="DummyUnit" parent="." instance=ExtResource("5_tvv1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3486, 0.5, 2)
 
-[node name="DummySpawn" parent="." instance=ExtResource("6_feyi7")]
+[node name="DummyUnit2" parent="." instance=ExtResource("5_tvv1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.518, 0.5, 2)
+unit_data = SubResource("Resource_tvv1p")
+
+[node name="DummySpawn" parent="." instance=ExtResource("6_3lina")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75861, 0.75, 2.25231)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -215,7 +254,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UICommandCenter/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("5_85qf4")
+texture = ExtResource("7_l7wtq")
 
 [node name="Commands" type="PanelContainer" parent="CanvasLayer/UICommandCenter/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(143.02, 0)
@@ -364,7 +403,7 @@ offset_top = -211.0
 offset_right = 284.0
 offset_bottom = -69.0
 grow_vertical = 0
-script = ExtResource("7_pwoe4")
+script = ExtResource("8_oi0rd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UICommandCenter/UI_BuildingInfo"]
 layout_mode = 2
@@ -422,7 +461,7 @@ offset_left = -387.0
 offset_bottom = 648.0
 grow_horizontal = 0
 mouse_filter = 2
-script = ExtResource("7_gm2dh")
+script = ExtResource("9_6q0ww")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UINotify"]
 layout_mode = 1
@@ -440,7 +479,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("8_pwoe4")
+script = ExtResource("11_pbhiv")
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/UINetwork"]
 layout_mode = 1
@@ -501,7 +540,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("10_85qf4")
+script = ExtResource("11_0rm5j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIDebug"]
 layout_mode = 0
@@ -540,7 +579,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("11_feyi7")
+script = ExtResource("12_dwkw0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIChat"]
 layout_mode = 1
@@ -564,7 +603,7 @@ text = "Sent Message"
 [node name="StateMachine" type="Node" parent="."]
 
 [node name="BuildMode" type="Node" parent="StateMachine" node_paths=PackedStringArray("camera")]
-script = ExtResource("12_adjli")
+script = ExtResource("13_th4qi")
 camera = NodePath("../../Camera3D")
 
 [node name="SelectMode" type="Node" parent="StateMachine"]
@@ -572,6 +611,9 @@ camera = NodePath("../../Camera3D")
 [node name="MoveMode" type="Node" parent="StateMachine"]
 
 [node name="Node3" type="Node" parent="StateMachine"]
+
+[node name="TeamMode" type="Node" parent="." groups=["gamemode"]]
+script = ExtResource("15_pbhiv")
 
 [connection signal="pressed" from="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer3/btn_build" to="CanvasLayer/UICommandCenter/UI_BuildingInfo" method="_on_btn_build_pressed"]
 [connection signal="pressed" from="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer3/btn_stop" to="CanvasLayer/UICommandCenter/UI_BuildingInfo" method="_on_btn_stop_pressed"]

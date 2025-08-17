@@ -1,6 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://p3q3kmjddt8n"]
+[gd_scene load_steps=8 format=3 uid="uid://p3q3kmjddt8n"]
 
 [ext_resource type="Script" uid="uid://lle1fy2nktdr" path="res://scripts/unit/dummy_unit.gd" id="1_l1gro"]
+[ext_resource type="Script" uid="uid://djhignm18u4oe" path="res://scripts/entity/unit_data.gd" id="2_8p6de"]
+
+[sub_resource type="Resource" id="Resource_twr4v"]
+script = ExtResource("2_8p6de")
+name = ""
+health = 100.0
+health_max = 100.0
+team_id = 1
+ally_id = -1
+metadata/_custom_type_script = "uid://djhignm18u4oe"
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l1gro"]
 properties/0/path = NodePath(".:position")
@@ -25,6 +35,7 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [node name="DummyUnit" type="CharacterBody3D" groups=["unit"]]
 script = ExtResource("1_l1gro")
+unit_data = SubResource("Resource_twr4v")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_l1gro")

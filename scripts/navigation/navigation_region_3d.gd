@@ -37,9 +37,6 @@ func bake_nav():
 	
 	# Bake the navmesh
 	bake_navigation_mesh()
-	
-	
-	
 	#var on_thread: bool = true
 	#bake_navigation_mesh(on_thread)
 	#await bake_finished 

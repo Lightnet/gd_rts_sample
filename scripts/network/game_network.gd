@@ -19,6 +19,9 @@ var local_player_id: int = 0  # Local peer ID
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
+
+# team_id
+# ally_id
 var player_info = {"name": "Name"}
 
 # Signals for game logic
@@ -49,9 +52,18 @@ func _network_host(port: int = DEFAULT_PORT, max_players: int = MAX_PLAYERS) -> 
 		return false
 	
 	multiplayer.multiplayer_peer = peer
+	var team_id = 0
+	var ally_id = 0
+	if player_info.has("team_id"):
+		team_id = player_info["team_id"]
+		#pass
+	if player_info.has("ally_id"):
+		ally_id = player_info["ally_id"]
 	_add_player(local_player_id, {
 		#"username": "Server",
 		"username": player_info["name"],
+		"team_id": team_id,
+		"ally_id": ally_id,
 		# player_info
 		"position": Vector2.ZERO
 	})
@@ -65,12 +77,20 @@ func _network_join(ip: String = DEFAULT_IP, port: int = DEFAULT_PORT) -> bool:
 	if error != OK:
 		print("Failed to join server: %s" % error)
 		return false
+	var team_id = 0
+	var ally_id = 0
+	if player_info.has("team_id"):
+		team_id = player_info["team_id"]
+	if player_info.has("ally_id"):
+		ally_id = player_info["ally_id"]
 	
 	multiplayer.multiplayer_peer = peer
 	local_player_id = multiplayer.get_unique_id()
 	_add_player(local_player_id, {
 		#"username": "Player_%d" % local_player_id,
 		"username": player_info["name"],
+		"team_id": team_id,
+		"ally_id": ally_id,
 		"position": Vector2.ZERO
 	})
 	print("Attempting to join server at %s:%d" % [ip, port])

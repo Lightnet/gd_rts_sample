@@ -12,14 +12,14 @@ config_version=5
 
 config/name="gd_rts_sample"
 config/tags=PackedStringArray("3d", "basebuilding", "multiplayer", "strategy")
-run/main_scene="uid://beu0yhf3pk4t"
+run/main_scene="uid://dp873vjbsbqyn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
-GameNetwork="*res://scripts/game_network.gd"
+GameNetwork="*res://scripts/network/game_network.gd"
 Console="*res://addons/console/console.gd"
 
 [editor_plugins]
@@ -32,6 +32,7 @@ notify=""
 building="building unit"
 unit=""
 navmesh=""
+gamemode=""
 
 [input]
 

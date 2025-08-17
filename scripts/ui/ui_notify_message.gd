@@ -29,7 +29,7 @@ func show_notification(msg:String, duration: float = 2.0):
 	remove_notify()
 
 func remove_notify()->void:
-	print("queue_free notify")
+	#print("queue_free notify")
 	queue_free()
 	#pass
 

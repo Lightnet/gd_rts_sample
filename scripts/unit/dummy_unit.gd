@@ -1,17 +1,25 @@
 extends CharacterBody3D
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+@export var unit_data:UnitData
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ACCEL = 10
 const ROTATION_SPEED = 5.0  # Controls how fast the character rotates (adjust as needed)
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var target:Node3D
 @export var target_position:Vector3
 var distance_threshold = 1.1  # Stop when this close to the target (in units)
 @export var is_follow:bool = false
+
+func _ready() -> void:
+	if not unit_data:
+		unit_data = UnitData.new()
+	
+	pass
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
@@ -44,20 +52,73 @@ func _physics_process(delta: float) -> void:
 			if unit.is_in_group("building"):
 				#is_follow = false
 				#print("found")
-				print("stop")
-				#pass
+				#print("stop")
+				pass
 		# Calculate distance to the target
 		var distance = global_position.distance_to(target_position)
 		#print("distance:", distance)
 		# Check if close enough to the target
 		if distance < distance_threshold:
 			is_follow = false
-			print("target_position stop")
+			#print("target_position stop")
 			#pass
+	#pass
+
+func request_follow_target(pos:Vector3):
+	
+	if unit_data:
+		var is_found:bool = false
+		#unit_data.team_id 
+		var players = GameNetwork.players
+		for i in players:
+			print("follow player: ",i)
+			if players[i]["team_id"] == unit_data.team_id:
+				print("player id:", i)
+				if i == multiplayer.get_unique_id():
+					is_found=true
+					break
+					#pass
+			pass
+		pass
+	
+		if is_found:
+			if multiplayer.is_server():
+				set_follow_target.rpc(pos)
+			else:
+				remote_follow_target.rpc_id(1, pos)
+			pass
+
+@rpc("any_peer","call_remote")
+func remote_follow_target(pos:Vector3):
+	if not multiplayer.is_server(): return
+	#need to check for client to move this unit.
+	set_follow_target.rpc(pos)
 	#pass
 
 @rpc("any_peer","call_local")
 func set_follow_target(pos:Vector3):
+	
 	target_position = pos
 	is_follow = true
+	
+	#if unit_data:
+		#var is_found:bool = false
+		##unit_data.team_id 
+		#var players = GameNetwork.players
+		#for i in players:
+			#if players[i]["team_id"] == unit_data.team_id:
+				#if i == multiplayer.get_unique_id():
+					#is_found=true
+					#break
+					##pass
+			#pass
+		#pass
+		#
+		#if is_found:
+			#target_position = pos
+			#is_follow = true
 	#pass
+
+func get_team_id():
+	
+	pass

@@ -127,7 +127,7 @@ func _handle_select_unit()->void:
 			target.global_position = collision_point
 	else:
 		unit=null
-		print("Deselect Unit")
+		#print("Deselect Unit")
 	pass
 
 func _handle_move_click() -> void:
@@ -148,9 +148,11 @@ func _handle_move_click() -> void:
 		
 		if unit:
 			#unit.target_position = collision_point
-			if unit.has_method("set_follow_target"):
+			#if unit.has_method("set_follow_target"):
 				#unit.set_follow_target(collision_point)
-				unit.set_follow_target.rpc(collision_point)
+				#unit.set_follow_target.rpc(collision_point)
+			if unit.has_method("request_follow_target"):
+				unit.request_follow_target(collision_point)
 			pass
 		if target:
 			target.global_position = collision_point

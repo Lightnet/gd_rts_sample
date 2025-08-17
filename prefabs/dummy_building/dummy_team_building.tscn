@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://us23xvj210u0"]
+
+[ext_resource type="Script" uid="uid://s1dvdmyd8xse" path="res://scripts/unit/dummy_team_building.gd" id="1_1k44s"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1ueep"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m60q0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m60q0"]
+albedo_color = Color(0, 0, 0.647059, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f66tu"]
+material = SubResource("StandardMaterial3D_m60q0")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1ueep"]
+viewport_path = NodePath("SubViewport")
+
+[node name="DummyBuilding" type="StaticBody3D" groups=["building"]]
+script = ExtResource("1_1k44s")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1ueep")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m60q0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_f66tu")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.5
+height = 0.5
+vertices = PackedVector3Array(0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15887, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_1ueep")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+positional_shadow_atlas_size = 128
+size = Vector2i(102, 23)
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 101.0
+offset_bottom = 23.0
+text = "Building Unit"

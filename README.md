@@ -59,6 +59,7 @@
 	- [x] NavigationObstacle3D
 		- Note rebuild navigation mesh has bugs.
 		- Note building must place in NavigationObstacle3D as child
+		- Note if fail to parent NavigationObstacle3D which mesh fail to create avoid nav mesh.
 - [ ] unit
 	- [x] select move unit
 	- [x] spawn unit
