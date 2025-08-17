@@ -6,6 +6,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ACCEL = 10
 const ROTATION_SPEED = 5.0  # Controls how fast the character rotates (adjust as needed)
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var target:Node3D
 @export var target_position:Vector3
@@ -27,8 +28,14 @@ func _physics_process(delta: float) -> void:
 			var current_rotation = rotation.y
 			# Smoothly interpolate the Y rotation
 			rotation.y = lerp_angle(current_rotation, target_rotation, delta * ROTATION_SPEED)
-		
+		direction.y = 0
 		velocity = velocity.lerp(direction * SPEED, ACCEL * delta)
+		#velocity.y = 0
+		
+		# Apply gravity if not on the floor
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+		
 		move_and_slide()
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)

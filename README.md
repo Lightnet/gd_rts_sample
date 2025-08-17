@@ -25,7 +25,9 @@
 - Hold right to rotate camera
 - Left Mouse Click = select unit
 - Right Mouse Click = move unit
-- select unit to build g key
+- Select unit to build g key
+- Mouse scroll zoom cameera up and down.
+- B key = toggle build.
 
 # key input:
 - [ ] recruit
@@ -81,6 +83,8 @@
   Authority can be server and client when using the remote call. Meaning the cilent has it own Authority assign by the server identity number.
   
   For example private messsage to send correct client id to remote and not to other peers. Reason is simple to prevent cheating or exploit when sync to nodes. Since it peer to peer to for how to handle authority of their own current server and client.
+  
+  Another is handle duplicate items or create items without limits which should go to server Authority and not any_peer.
 
   If server for Authority and call_local it will sync with server and clients.
 

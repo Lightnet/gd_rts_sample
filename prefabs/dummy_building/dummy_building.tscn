@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfvarodp52hmd"]
+[gd_scene load_steps=7 format=3 uid="uid://cfvarodp52hmd"]
 
 [ext_resource type="Script" uid="uid://cetwk3dcvf2bq" path="res://scripts/unit/dummy_building.gd" id="1_1ueep"]
 
@@ -17,6 +17,9 @@ albedo_color = Color(0, 0, 0.647059, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_f66tu"]
 material = SubResource("StandardMaterial3D_m60q0")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1ueep"]
+viewport_path = NodePath("SubViewport")
 
 [node name="DummyBuilding" type="StaticBody3D" groups=["building"]]
 script = ExtResource("1_1ueep")
@@ -39,3 +42,18 @@ carve_navigation_mesh = true
 
 [node name="SpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15887, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_1ueep")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+positional_shadow_atlas_size = 128
+size = Vector2i(102, 23)
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 101.0
+offset_bottom = 23.0
+text = "Building Unit"

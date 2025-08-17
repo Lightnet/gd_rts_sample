@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb48xaallk3dw"]
+[gd_scene load_steps=6 format=3 uid="uid://cb48xaallk3dw"]
 
 [ext_resource type="Script" uid="uid://d3irmws5kl88v" path="res://prefabs/dummy_spawn/dummy_spawn.gd" id="1_fax20"]
 
@@ -11,7 +11,11 @@ size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4dic2"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_fax20"]
+viewport_path = NodePath("SubViewport")
+
 [node name="DummySpawn" type="Node3D"]
+editor_description = "Simple test. Using the ` to test spawn. Type \"spawn\"."
 script = ExtResource("1_fax20")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -23,3 +27,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnPoint"]
 visible = false
 mesh = SubResource("CapsuleMesh_4dic2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15887, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_fax20")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+positional_shadow_atlas_size = 128
+size = Vector2i(117, 23)
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 101.0
+offset_bottom = 23.0
+text = "Dummy Spawn"
