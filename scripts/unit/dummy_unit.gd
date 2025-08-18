@@ -19,8 +19,7 @@ var distance_threshold = 1.1  # Stop when this close to the target (in units)
 func _ready() -> void:
 	if not unit_data:
 		unit_data = UnitData.new()
-	
-	pass
+	#pass
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
@@ -65,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			#pass
 	#pass
 
-func request_follow_target(pos:Vector3):
+func request_follow_target(pos:Vector3) -> void:
 	
 	if unit_data:
 		var is_found:bool = false
@@ -91,7 +90,7 @@ func request_follow_target(pos:Vector3):
 			pass
 
 @rpc("any_peer","call_remote")
-func remote_follow_target(pos:Vector3):
+func remote_follow_target(pos:Vector3)-> void:
 	if not multiplayer.is_server(): return
 	
 	var is_found:bool = false
@@ -117,23 +116,23 @@ func remote_follow_target(pos:Vector3):
 			#set_follow_target.rpc(pos)
 
 @rpc("authority","call_local")
-func set_follow_target(pos:Vector3):
+func set_follow_target(pos:Vector3)-> void:
 	target_position = pos
 	is_follow = true
 
 func get_team_id()->int:
 	return team_id
 
-func request_set_team_id(_id:int):
+func request_set_team_id(_id:int)-> void:
 	if multiplayer.is_server():
 		set_team_id.rpc(_id)
 	else:
 		remote_set_team_id.rpc_id(1,_id)
 		
 @rpc("any_peer","call_remote")
-func remote_set_team_id(_id:int):
+func remote_set_team_id(_id:int)-> void:
 	set_team_id.rpc(_id)
 	
 @rpc("authority","call_local")
-func set_team_id(_id:int):
+func set_team_id(_id:int)-> void:
 	team_id = _id

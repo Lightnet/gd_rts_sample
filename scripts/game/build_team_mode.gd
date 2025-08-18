@@ -89,7 +89,7 @@ func request_build():
 @rpc("any_peer","call_remote")
 func remote_build(pos:Vector3):
 	var peer_id = multiplayer.get_remote_sender_id()
-	var team_id
+	var team_id = 0
 	var players = GameNetwork.players
 	for i in players:
 		#print("player id: ",i)
@@ -107,6 +107,7 @@ func remote_build(pos:Vector3):
 	#pass
 @rpc("authority","call_local")
 func build_building_unit(team_id:int, pos):
+	#if not multiplayer.is_server(): return #if client do nothing
 	#print("current id:", id)
 	#print("auth team_id: ",team_id)
 	var dummy = DUMMY_BUILDING.instantiate()

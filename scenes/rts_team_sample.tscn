@@ -158,10 +158,12 @@ size = Vector3(3, 1, 1)
 
 [node name="DummyBuilding1" parent="NavigationRegion3D" instance=ExtResource("13_ix3j4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17609, 1, 13.8382)
+team_id = 1
 building_unit = SubResource("Resource_pbhiv")
 
 [node name="DummyBuilding2" parent="NavigationRegion3D" instance=ExtResource("13_ix3j4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9921, 1, -15.6705)
+team_id = 2
 building_unit = SubResource("Resource_s0yod")
 
 [node name="target" type="Marker3D" parent="."]

@@ -24,9 +24,9 @@ func _process(delta: float) -> void:
 		if time >= time_max:
 			time = 0
 			#need to make sure of server or client own in case copies 
+			if not is_multiplayer_authority(): return
 			if multiplayer.is_server():
 				request_spawn()
-			
 	pass
 
 func get_building_name()->String:
@@ -84,7 +84,13 @@ func create_unit():
 	print("building_unit.team_id: ", building_unit.team_id)
 	#dummy.unit_data.team_id = building_unit.team_id
 	#dummy.unit_data.team_id = team_id
-	dummy.team_id = team_id
+	#dummy.team_id = team_id
+	#await get_tree().create_timer(0.5).timeout
+	dummy.name = Global.get_add_name()
+	#dummy.set_team_id.rpc(team_id)
+	#dummy.request_set_team_id.rpc(team_id)
+	dummy.request_set_team_id(team_id)
+	
 	push_error("dummy.unit_data.team_id: " + str(dummy.unit_data.team_id))
 	dummy.global_position = spawn_point.global_position
 	#pass

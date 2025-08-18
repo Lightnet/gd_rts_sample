@@ -11,7 +11,7 @@ const DUMMY_UNIT = preload("res://prefabs/dummy_unit/dummy_unit.tscn")
 func _ready() -> void:
 	building_unit = BuildingUnit.new()
 	building_unit.name = "DummyBuilding"
-	pass
+	# pass
 	
 func _process(delta: float) -> void:
 	
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 			if multiplayer.is_server():
 				request_spawn()
 			
-	pass
+	# pass
 
 func get_building_name()->String:
 	return building_unit.name
@@ -33,14 +33,14 @@ func request_build():
 		start_build_unit.rpc()
 	else:
 		remote_start_build.rpc_id(1)
-	pass
+	# pass
 
 func request_stop_build():
 	if multiplayer.is_server():
 		stop_build_unit.rpc()
 	else:
 		remote_stop_build.rpc_id(1)
-	pass
+	# pass
 	
 @rpc("any_peer","call_remote")
 func remote_start_build():
@@ -65,12 +65,12 @@ func request_spawn():
 		create_unit.rpc()
 	else:
 		build_spawn.rpc_id(1)
-	pass
+	# pass
 
 @rpc("any_peer","call_remote")
 func build_spawn():
 	create_unit.rpc()
-	pass
+	# pass
 
 @rpc("authority","call_local")
 func create_unit():
@@ -84,15 +84,12 @@ func request_delete():
 		remove_node.rpc()
 	else:
 		remote_delete.rpc_id(1)
-	pass
+	# pass
 @rpc("any_peer","call_remote")
 func remote_delete():
 	remove_node.rpc()
-	pass
+	# pass
 @rpc("authority","call_local")	
 func remove_node():
 	queue_free()
-	pass
-
-
-# 
+	# pass

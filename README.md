@@ -129,7 +129,7 @@ func build_building_unit(team_id:int, pos):
 
 ## Notes:
 - There will be incorrect error if not set in correct or config in correct.
-
+- there chance the name generate id does or out of sync.
 
 # Credits:
 - Grok

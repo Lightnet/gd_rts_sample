@@ -114,6 +114,7 @@ func _handle_select_unit()->void:
 			elif collider.is_in_group("building"):
 				building_unit = collider
 				ui_building_info.set_building_node(collider)
+				Global.notify_message("building unit team id:" + str(collider.team_id))
 				#pass
 			else:
 				unit=null
