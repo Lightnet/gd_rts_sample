@@ -71,15 +71,15 @@ func request_follow_target(pos:Vector3):
 		#unit_data.team_id 
 		var players = GameNetwork.players
 		for i in players:
-			print("follow player: ",i)
+			#print("follow player: ",i)
 			if players[i]["team_id"] == unit_data.team_id:
-				print("player id:", i)
+				#print("player id:", i)
 				if i == multiplayer.get_unique_id():
 					is_found=true
 					break
 					#pass
-			pass
-		pass
+			#pass
+		#pass
 	
 		if is_found:
 			if multiplayer.is_server():
@@ -92,10 +92,27 @@ func request_follow_target(pos:Vector3):
 func remote_follow_target(pos:Vector3):
 	if not multiplayer.is_server(): return
 	#need to check for client to move this unit.
-	set_follow_target.rpc(pos)
+	if unit_data:
+		var is_found:bool = false
+		#unit_data.team_id 
+		var players = GameNetwork.players
+		#print("remote_follow_target id:", multiplayer.get_remote_sender_id())
+		for i in players:
+			#print("remote follow player: ",i)
+			if players[i]["team_id"] == unit_data.team_id:
+				#print("remote player id:", i)
+				if i == multiplayer.get_remote_sender_id():
+					is_found=true
+					break
+					#pass
+			#pass
+		#pass
+		if is_found:
+			set_follow_target.rpc(pos)
 	#pass
 
-@rpc("any_peer","call_local")
+#@rpc("any_peer","call_local")
+@rpc("authority","call_local")
 func set_follow_target(pos:Vector3):
 	
 	target_position = pos

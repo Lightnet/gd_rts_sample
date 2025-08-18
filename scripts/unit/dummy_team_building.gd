@@ -36,6 +36,11 @@ func request_build():
 	pass
 
 func request_stop_build():
+	
+	
+	
+	
+	
 	if multiplayer.is_server():
 		stop_build_unit.rpc()
 	else:

@@ -29,6 +29,10 @@
 - Mouse scroll zoom cameera up and down.
 - B key = toggle build.
 
+- select building unit = left click
+- select unit = left click
+	- right click move
+
 # key input:
 - [ ] recruit
 	- g key
@@ -51,6 +55,7 @@
 - [x] sent message test
 - [x] dev console / cheat
 - [ ] building
+	- [x] team id
 	- [x] place building
 	- [x] delete building
 	- [x] select building
@@ -60,12 +65,14 @@
 		- Note rebuild navigation mesh has bugs.
 		- Note building must place in NavigationObstacle3D as child
 		- Note if fail to parent NavigationObstacle3D which mesh fail to create avoid nav mesh.
-- [ ] unit
+		
+- [ ] pawn unit
+	- [x] team id
 	- [x] select move unit
 	- [x] spawn unit
+	- [x] team unit
 	- [ ] attack unit
-	- [ ] team unit
-
+	
 ## network
 - [ ] build base
 - [x] select move unit
@@ -172,7 +179,8 @@ func cmd_spawn():
 	request_spawn()
 ```
 	This handle client id. Which later use to assign team unit id tag. Work in progress.
-
+# Notes:
+- The project build is subject to change.
 
 # Credits:
 - Grok
