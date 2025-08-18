@@ -108,7 +108,8 @@ func _handle_select_unit()->void:
 		if collider:
 			if collider.is_in_group("unit"):
 				unit = collider
-				push_error("unit team id:" + str(unit.unit_data.team_id))
+				push_error("unit team id:" + str(unit.team_id))
+				Global.notify_message("unit team id:" + str(unit.team_id))
 				#pass
 			elif collider.is_in_group("building"):
 				building_unit = collider

@@ -27,20 +27,20 @@ float noise(vec2 uv) {
 void fragment() {
     // Sample the albedo texture using UV
     vec4 tex = texture(albedo_texture, UV);
-    
+
     // Compute noise based on UV and noise_density, modulated by UV.y for vertical effect
     float noise_value = noise(UV * noise_density) * UV.y;
-    
+
     // Calculate beam and dissolve thresholds
     float d1 = step(progress, noise_value);
     float d2 = step(progress - beam_size, noise_value);
-    
+
     // Compute beam color
     vec3 beam = vec3(d2 - d1) * color.rgb;
-    
+
     // Set albedo (color) and add beam
     ALBEDO = tex.rgb + beam;
-    
+
     // Set alpha for dissolve effect
     ALPHA = tex.a * d2;
 }

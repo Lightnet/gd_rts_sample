@@ -4,6 +4,7 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var unit_data:UnitData
+@export var team_id:int = 0
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -72,7 +73,8 @@ func request_follow_target(pos:Vector3):
 		var players = GameNetwork.players
 		for i in players:
 			#print("follow player: ",i)
-			if players[i]["team_id"] == unit_data.team_id:
+			#if players[i]["team_id"] == unit_data.team_id:
+			if players[i]["team_id"] == team_id:
 				#print("player id:", i)
 				if i == multiplayer.get_unique_id():
 					is_found=true
@@ -91,51 +93,47 @@ func request_follow_target(pos:Vector3):
 @rpc("any_peer","call_remote")
 func remote_follow_target(pos:Vector3):
 	if not multiplayer.is_server(): return
+	
+	var is_found:bool = false
+	var players = GameNetwork.players
+	for i in players:
+		if players[i]["team_id"] == team_id:
+			if i == multiplayer.get_remote_sender_id():
+				is_found=true
+				break
+	if is_found:
+		set_follow_target.rpc(pos)
+	
 	#need to check for client to move this unit.
-	if unit_data:
-		var is_found:bool = false
-		#unit_data.team_id 
-		var players = GameNetwork.players
-		#print("remote_follow_target id:", multiplayer.get_remote_sender_id())
-		for i in players:
-			#print("remote follow player: ",i)
-			if players[i]["team_id"] == unit_data.team_id:
-				#print("remote player id:", i)
-				if i == multiplayer.get_remote_sender_id():
-					is_found=true
-					break
-					#pass
-			#pass
-		#pass
-		if is_found:
-			set_follow_target.rpc(pos)
-	#pass
-
-#@rpc("any_peer","call_local")
-@rpc("authority","call_local")
-func set_follow_target(pos:Vector3):
-	
-	target_position = pos
-	is_follow = true
-	
 	#if unit_data:
 		#var is_found:bool = false
-		##unit_data.team_id 
 		#var players = GameNetwork.players
 		#for i in players:
-			#if players[i]["team_id"] == unit_data.team_id:
-				#if i == multiplayer.get_unique_id():
+			#if players[i]["team_id"] == team_id:
+				#if i == multiplayer.get_remote_sender_id():
 					#is_found=true
 					#break
-					##pass
-			#pass
-		#pass
-		#
 		#if is_found:
-			#target_position = pos
-			#is_follow = true
-	#pass
+			#set_follow_target.rpc(pos)
 
-func get_team_id():
+@rpc("authority","call_local")
+func set_follow_target(pos:Vector3):
+	target_position = pos
+	is_follow = true
+
+func get_team_id()->int:
+	return team_id
+
+func request_set_team_id(_id:int):
+	if multiplayer.is_server():
+		set_team_id.rpc(_id)
+	else:
+		remote_set_team_id.rpc_id(1,_id)
+		
+@rpc("any_peer","call_remote")
+func remote_set_team_id(_id:int):
+	set_team_id.rpc(_id)
 	
-	pass
+@rpc("authority","call_local")
+func set_team_id(_id:int):
+	team_id = _id

@@ -100,7 +100,7 @@ func remote_build(pos:Vector3):
 			team_id = players[i]["team_id"]
 			#print("TEAM ID2 : ", team_id)
 			break
-		pass
+			
 	print("remote peer_id:", peer_id)
 	print("remote team_id:", team_id)
 	build_building_unit.rpc(team_id, pos)
@@ -108,21 +108,6 @@ func remote_build(pos:Vector3):
 @rpc("authority","call_local")
 func build_building_unit(team_id:int, pos):
 	#print("current id:", id)
-	#var players = GameNetwork.players
-	#for i in players:
-		##print("player id: ",i)
-		##print("player data: ", players[i])
-		#if i == id:
-			#print("FOUND ID: ", i)
-			#print("TEAM ID: ", players[i]["team_id"])
-			#team_id = players[i]["team_id"]
-			#print("TEAM ID2 : ", team_id)
-			#var dummy = DUMMY_BUILDING.instantiate()
-			#get_tree().current_scene.get_node("NavigationRegion3D").add_child(dummy)
-			#dummy.building_unit.team_id = team_id
-			#dummy.global_position = pos
-			#break
-		#pass
 	#print("auth team_id: ",team_id)
 	var dummy = DUMMY_BUILDING.instantiate()
 	#
@@ -131,7 +116,9 @@ func build_building_unit(team_id:int, pos):
 	#print("auth > local > team_id:", team_id)
 	push_error("auth > local > team_id:", team_id)
 	#dummy.building_unit.team_id = team_id
-	dummy.request_set_team_id(team_id)
+	#dummy.set_multiplayer_authority(1)
+	#dummy.request_set_team_id(team_id) # do not use while in authority will get error
+	dummy.set_team_id(team_id)# since we are in authority use this
 	dummy.global_position = pos
 	
 	# need to rebake nav mesh
