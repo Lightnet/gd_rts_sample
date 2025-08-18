@@ -130,7 +130,8 @@ func build_building_unit(team_id:int, pos):
 	get_tree().current_scene.get_node("NavigationRegion3D").add_child(dummy)
 	#print("auth > local > team_id:", team_id)
 	push_error("auth > local > team_id:", team_id)
-	dummy.building_unit.team_id = team_id
+	#dummy.building_unit.team_id = team_id
+	dummy.request_set_team_id(team_id)
 	dummy.global_position = pos
 	
 	# need to rebake nav mesh

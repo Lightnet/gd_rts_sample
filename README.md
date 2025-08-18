@@ -61,6 +61,9 @@
 	- [x] select building
 	- [x] build unit
 	- [x] time build unit
+	- [x] building_unit
+		- note that sync team_id need to using MultiplayerSynchronizer and not Resource class
+		- need to get id checks when selected.
 	- [x] NavigationObstacle3D
 		- Note rebuild navigation mesh has bugs.
 		- Note building must place in NavigationObstacle3D as child

@@ -106,18 +106,12 @@ func _handle_select_unit()->void:
 		#print("Hit at: ", collision_point, " on object: ", collider.name)
 		
 		if collider:
-			#unit.target_position = collision_point
-			#if unit.has_method("set_follow_target"):
-				#unit.set_follow_target(collision_point)
-				
 			if collider.is_in_group("unit"):
-				#print("found unit")
 				unit = collider
+				push_error("unit team id:" + str(unit.unit_data.team_id))
 				#pass
 			elif collider.is_in_group("building"):
 				building_unit = collider
-				# building_unit:BuildingUnit
-				#ui_building_info.set_building_info(collider.building_unit)
 				ui_building_info.set_building_node(collider)
 				#pass
 			else:
@@ -143,14 +137,10 @@ func _handle_move_click() -> void:
 	
 	if result:
 		var collision_point: Vector3 = result.position
-		var collider: Node = result.collider
+		#var collider: Node = result.collider
 		#print("Hit at: ", collision_point, " on object: ", collider.name)
 		
 		if unit:
-			#unit.target_position = collision_point
-			#if unit.has_method("set_follow_target"):
-				#unit.set_follow_target(collision_point)
-				#unit.set_follow_target.rpc(collision_point)
 			if unit.has_method("request_follow_target"):
 				unit.request_follow_target(collision_point)
 			pass

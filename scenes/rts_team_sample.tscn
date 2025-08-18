@@ -14,8 +14,8 @@
 [ext_resource type="Script" uid="uid://cxnadyvmj7k8w" path="res://scripts/ui/ui_network_team.gd" id="11_pbhiv"]
 [ext_resource type="Script" uid="uid://oq02j5pv1ois" path="res://scripts/ui/ui_chat.gd" id="12_dwkw0"]
 [ext_resource type="PackedScene" uid="uid://us23xvj210u0" path="res://prefabs/dummy_building/dummy_team_building.tscn" id="13_ix3j4"]
-[ext_resource type="Script" uid="uid://dbf7djglng1ga" path="res://scripts/game/build_mode.gd" id="13_th4qi"]
 [ext_resource type="Script" uid="uid://7khosctc0n32" path="res://scripts/game/game_team_mode.gd" id="15_pbhiv"]
+[ext_resource type="Script" uid="uid://5npo27b668tg" path="res://scripts/game/build_team_mode.gd" id="15_s0yod"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kcn4o"]
 
@@ -41,7 +41,7 @@ albedo_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 
 [sub_resource type="Resource" id="Resource_pbhiv"]
 script = ExtResource("4_4nral")
-name = ""
+name = "DummyBuilding"
 health = 100.0
 health_max = 100.0
 team_id = 1
@@ -50,7 +50,7 @@ metadata/_custom_type_script = "uid://dyhqjlpyv6kiu"
 
 [sub_resource type="Resource" id="Resource_s0yod"]
 script = ExtResource("4_4nral")
-name = ""
+name = "DummyBuilding"
 health = 100.0
 health_max = 100.0
 team_id = 2
@@ -430,6 +430,17 @@ text = "Progress:"
 layout_mode = 2
 text = "00"
 
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Team ID:"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "00"
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer"]
 layout_mode = 2
 
@@ -603,7 +614,7 @@ text = "Sent Message"
 [node name="StateMachine" type="Node" parent="."]
 
 [node name="BuildMode" type="Node" parent="StateMachine" node_paths=PackedStringArray("camera")]
-script = ExtResource("13_th4qi")
+script = ExtResource("15_s0yod")
 camera = NodePath("../../Camera3D")
 
 [node name="SelectMode" type="Node" parent="StateMachine"]

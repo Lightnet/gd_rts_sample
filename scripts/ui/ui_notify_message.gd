@@ -11,7 +11,7 @@ func _ready() -> void:
 	modulate.a = 0
 	#pass
 
-func show_notification(msg:String, duration: float = 2.0):
+func show_notification(msg:String, _duration: float = 2.0):
 	label.text = msg
 	modulate.a = 0
 	 # Create a new Tween
