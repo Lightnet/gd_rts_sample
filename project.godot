@@ -33,6 +33,7 @@ building="building unit"
 unit=""
 navmesh=""
 gamemode=""
+buildinginfo=""
 
 [input]
 

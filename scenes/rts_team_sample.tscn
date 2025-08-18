@@ -397,7 +397,7 @@ text = "Unit Counts:"
 layout_mode = 2
 text = "0"
 
-[node name="UI_BuildingInfo" type="PanelContainer" parent="CanvasLayer/UICommandCenter"]
+[node name="UI_BuildingInfo" type="PanelContainer" parent="CanvasLayer/UICommandCenter" groups=["buildinginfo"]]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

@@ -36,10 +36,11 @@ func bake_nav():
 	#navigation_mesh.max_slope = deg_to_rad(45.0)
 	
 	# Bake the navmesh
-	bake_navigation_mesh()
+	bake_navigation_mesh(true)
+	await bake_finished
 	#var on_thread: bool = true
 	#bake_navigation_mesh(on_thread)
-	#await bake_finished 
+	
 	#print("FINISHED")
 	
 	pass

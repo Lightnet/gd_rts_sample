@@ -91,7 +91,7 @@ func create_unit():
 	#dummy.request_set_team_id.rpc(team_id)
 	dummy.request_set_team_id(team_id)
 	
-	push_error("dummy.unit_data.team_id: " + str(dummy.unit_data.team_id))
+	#push_error("dummy.unit_data.team_id: " + str(dummy.unit_data.team_id))
 	dummy.global_position = spawn_point.global_position
 	#pass
 
@@ -127,7 +127,7 @@ func remote_set_team_id(_id:int):
 	#pass
 @rpc("authority","call_local")
 func set_team_id(_id:int):
-	push_error("set building team id:" + str(_id))
+	#push_error("set building team id:" + str(_id))
 	#building_unit.team_id = _id
 	team_id = _id
 	#pass

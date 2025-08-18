@@ -32,7 +32,7 @@ func _on_btn_build_pressed() -> void:
 	if building_node:
 		if building_node.has_method("request_build"):
 			var is_found:bool = false
-			var players = GameNetwork.players
+			#var players = GameNetwork.players
 			print("peer id:", multiplayer.get_unique_id())
 			var peer_id = multiplayer.get_unique_id()
 			if peer_id <= 0:
@@ -44,22 +44,17 @@ func _on_btn_build_pressed() -> void:
 			else:
 				Global.notify_message("Wrong Team Building")
 				#pass
-			#for i in players:
-				#if players[i]["team_id"] == GameNetwork.player_info["team_id"]:
-					#if i == multiplayer.get_remote_sender_id():
-						#is_found=true
-						#break
 			if is_found:
 				#print("build unit")
 				building_node.request_build()
 				#pass
-				push_error("building team_id: " + str(building_node.building_unit.team_id))
+				#push_error("building team_id: " + str(building_node.building_unit.team_id))
 	#pass
 
 func _on_btn_stop_pressed() -> void:
 	if building_node:
 		var is_found:bool = false
-		var players = GameNetwork.players
+		#var players = GameNetwork.players
 		print("peer id:", multiplayer.get_unique_id())
 		var peer_id = multiplayer.get_unique_id()
 		if peer_id <= 0:
@@ -80,7 +75,7 @@ func _on_btn_stop_pressed() -> void:
 func _on_btn_delete_pressed() -> void:
 	if building_node:
 		var is_found:bool = false
-		var players = GameNetwork.players
+		#var players = GameNetwork.players
 		print("peer id:", multiplayer.get_unique_id())
 		var peer_id = multiplayer.get_unique_id()
 		if peer_id <= 0:
@@ -93,7 +88,16 @@ func _on_btn_delete_pressed() -> void:
 			Global.notify_message("Wrong Team Building")
 			#pass
 		if is_found:
+			print("Delete building unit.")
+			
 			building_node.has_method("request_delete")
 			building_node.request_delete()
 			building_node=null
+			clear_building_info()
 	pass
+
+func clear_building_info()->void:
+	label.text = "None"
+	label_time.text = "0"
+	label_team_id.text = "0"
+	#pass
