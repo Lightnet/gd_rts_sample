@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://p3q3kmjddt8n"]
+[gd_scene load_steps=9 format=3 uid="uid://p3q3kmjddt8n"]
 
 [ext_resource type="Script" uid="uid://lle1fy2nktdr" path="res://scripts/unit/dummy_unit.gd" id="1_l1gro"]
 [ext_resource type="Script" uid="uid://djhignm18u4oe" path="res://scripts/entity/unit_data.gd" id="2_8p6de"]
@@ -33,6 +33,9 @@ properties/4/replication_mode = 1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a202f"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p6de"]
+albedo_color = Color(0.473976, 0.473976, 0.473976, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_l1gro"]
 size = Vector3(0.5, 0.5, 0.5)
 
@@ -55,6 +58,7 @@ shape = SubResource("CapsuleShape3D_4xowi")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_a202f")
+surface_material_override/0 = SubResource("StandardMaterial3D_8p6de")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23074, -0.448588)

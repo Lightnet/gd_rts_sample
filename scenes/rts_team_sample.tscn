@@ -157,12 +157,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 9)
 size = Vector3(3, 1, 1)
 
 [node name="DummyBuilding1" parent="NavigationRegion3D" instance=ExtResource("13_ix3j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17609, 1, 13.8382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.176, 0.5, 13.838)
 team_id = 1
 building_unit = SubResource("Resource_pbhiv")
 
 [node name="DummyBuilding2" parent="NavigationRegion3D" instance=ExtResource("13_ix3j4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9921, 1, -15.6705)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.992, 0.5, -15.67)
 team_id = 2
 building_unit = SubResource("Resource_s0yod")
 
@@ -586,6 +586,17 @@ text = "Player:"
 layout_mode = 2
 text = "None"
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UIDebug/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UIDebug/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Team ID:"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UIDebug/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "None"
+
 [node name="UIChat" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -621,11 +632,9 @@ text = "Sent Message"
 script = ExtResource("15_s0yod")
 camera = NodePath("../../Camera3D")
 
-[node name="SelectMode" type="Node" parent="StateMachine"]
+[node name="CommandMode" type="Node" parent="StateMachine"]
 
-[node name="MoveMode" type="Node" parent="StateMachine"]
-
-[node name="Node3" type="Node" parent="StateMachine"]
+[node name="MenuMode" type="Node" parent="StateMachine"]
 
 [node name="TeamMode" type="Node" parent="." groups=["gamemode"]]
 script = ExtResource("15_pbhiv")

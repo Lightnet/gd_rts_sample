@@ -13,7 +13,6 @@ func _ready() -> void:
 func _on_finished():
 	print("_on_finished baked")
 
-
 func request_bake_nav():
 	if multiplayer.is_server():
 		bake_nav.rpc()
@@ -34,13 +33,10 @@ func bake_nav():
 	#navigation_mesh.agent_height = 2.0
 	#navigation_mesh.agent_radius = 0.5
 	#navigation_mesh.max_slope = deg_to_rad(45.0)
-	
 	# Bake the navmesh
 	bake_navigation_mesh(true)
 	await bake_finished
 	#var on_thread: bool = true
 	#bake_navigation_mesh(on_thread)
-	
 	#print("FINISHED")
-	
 	pass

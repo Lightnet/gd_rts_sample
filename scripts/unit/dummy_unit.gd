@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 
 @export var unit_data:UnitData
 @export var team_id:int = 0
@@ -16,9 +17,16 @@ const ROTATION_SPEED = 5.0  # Controls how fast the character rotates (adjust as
 var distance_threshold = 1.1  # Stop when this close to the target (in units)
 @export var is_follow:bool = false
 
+func _enter_tree() -> void:
+	pass
+
 func _ready() -> void:
 	if not unit_data:
 		unit_data = UnitData.new()
+	print("team_id:", team_id)
+	if team_id == 2:
+		set_team_color()
+		pass
 	#pass
 
 func _physics_process(delta: float) -> void:
@@ -63,6 +71,10 @@ func _physics_process(delta: float) -> void:
 			#print("target_position stop")
 			#pass
 	#pass
+
+#================================================
+# FOLLOW
+#================================================
 
 func request_follow_target(pos:Vector3) -> void:
 	
@@ -120,6 +132,10 @@ func set_follow_target(pos:Vector3)-> void:
 	target_position = pos
 	is_follow = true
 
+#================================================
+# TEAM ID
+#================================================
+
 func get_team_id()->int:
 	return team_id
 
@@ -136,3 +152,26 @@ func remote_set_team_id(_id:int)-> void:
 @rpc("authority","call_local")
 func set_team_id(_id:int)-> void:
 	team_id = _id
+	if team_id == 2:
+		set_team_color()
+#================================================
+# TEAM COLOR
+#================================================
+
+func set_team_color():
+	#var material = mesh_instance_3d.get_surface_override_material(0) as StandardMaterial3D
+	#material.albedo_color = Color(1, 0, 0)
+	
+	# Create a new StandardMaterial3D
+	var material = StandardMaterial3D.new()
+	# Set the albedo color (e.g., red)
+	material.albedo_color = Color(1, 0, 0)
+	# Apply the material to the MeshInstance3D
+	mesh_instance_3d.set_surface_override_material(0, material)
+	
+	pass 
+
+
+#================================================
+# DELETE 
+#================================================
