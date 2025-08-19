@@ -249,7 +249,7 @@ func projectile_fire(pid:int):
 	dummy.set_multiplayer_authority(pid)
 	get_tree().current_scene.add_child(dummy)
 	dummy.name = Global.get_add_name()
-	dummy.team_id = 1
+	dummy.team_id = team_id
 	dummy.global_transform = hand_right.global_transform
 	pass
 
@@ -286,6 +286,8 @@ func remote_receive_hit(amount:float)->void:
 func receive_hit(_amount:float)->void:
 	health -= _amount
 	print("health: ", health)
-	
+	if health <= 0:
+		if multiplayer.is_server():
+			delete_node.rpc()
 	
 	#pass
