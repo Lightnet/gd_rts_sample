@@ -7,6 +7,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var unit_data:UnitData
 @export var team_id:int = 0
+@export var health:float = 100
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -268,3 +269,23 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			is_follow = false
 		pass
 	pass
+
+
+func request_receive_hit(amount:float)->void:
+	if multiplayer.is_server():
+		receive_hit.rpc(amount)
+	else:
+		remote_receive_hit.rpc_id(1)
+	#pass
+
+@rpc("any_peer","call_remote")
+func remote_receive_hit(amount:float)->void:
+	receive_hit.rpc()
+	#pass
+@rpc("authority","call_local")
+func receive_hit(_amount:float)->void:
+	health -= _amount
+	print("health: ", health)
+	
+	
+	#pass

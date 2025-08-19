@@ -76,6 +76,8 @@
 	- [x] team unit
 	- [x] attack unit (wip)
 	- [x] projectile fire
+	- [x] health (wip)
+	- [x] damage (wip)
 - [ ] helper
 	- [x] generate name id for sync
 		- to deal with out sync name.
@@ -133,7 +135,8 @@ func build_building_unit(team_id:int, pos):
 ## Notes:
 - There will be incorrect error if not set in correct or config in correct.
 - there chance the name generate id does or out of sync.
-
+- need to learn about more in depth for is_multiplayer_authority() and set_multiplayer_authority()
+- note this may be incorrect code for multiplayer to test sync. It need to be refine.
 # Credits:
 - Grok
 	- From x.com by using reference and help. 
