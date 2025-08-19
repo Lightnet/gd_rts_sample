@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dp873vjbsbqyn"]
+[gd_scene load_steps=29 format=3 uid="uid://dp873vjbsbqyn"]
 
 [ext_resource type="Script" uid="uid://bab3jqsjbnexk" path="res://scripts/controller/camera_3d_rts_team.gd" id="1_pbhiv"]
 [ext_resource type="Script" uid="uid://bceuyu8bdrs2t" path="res://scripts/navigation/navigation_region_3d.gd" id="2_4nral"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://us23xvj210u0" path="res://prefabs/dummy_building/dummy_team_building.tscn" id="13_ix3j4"]
 [ext_resource type="Script" uid="uid://7khosctc0n32" path="res://scripts/game/game_team_mode.gd" id="15_pbhiv"]
 [ext_resource type="Script" uid="uid://5npo27b668tg" path="res://scripts/game/build_team_mode.gd" id="15_s0yod"]
+[ext_resource type="PackedScene" uid="uid://bn7nyg7tfcupb" path="res://prefabs/dummy_unit_test/dummy_unit_test.tscn" id="17_tvv1p"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kcn4o"]
 
@@ -638,6 +639,9 @@ camera = NodePath("../../Camera3D")
 
 [node name="TeamMode" type="Node" parent="." groups=["gamemode"]]
 script = ExtResource("15_pbhiv")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("17_tvv1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47975, 0.5, 8.8063)
 
 [connection signal="pressed" from="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer3/btn_build" to="CanvasLayer/UICommandCenter/UI_BuildingInfo" method="_on_btn_build_pressed"]
 [connection signal="pressed" from="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer3/btn_stop" to="CanvasLayer/UICommandCenter/UI_BuildingInfo" method="_on_btn_stop_pressed"]

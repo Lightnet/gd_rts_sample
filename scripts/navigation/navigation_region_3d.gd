@@ -24,6 +24,7 @@ func request_bake_nav():
 func remote_bake():
 	bake_nav()
 	#pass
+	
 @rpc("authority","call_local")
 func bake_nav():
 	#navigation_mesh = NavigationMesh.new()

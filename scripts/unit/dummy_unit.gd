@@ -1,8 +1,9 @@
 extends CharacterBody3D
-
+const DUMMY_BULLET = preload("res://prefabs/dummy_bullet/dummy_bullet.tscn")
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var hand_right: Node3D = $HandRight
 
 @export var unit_data:UnitData
 @export var team_id:int = 0
@@ -13,9 +14,15 @@ const ACCEL = 10
 const ROTATION_SPEED = 5.0  # Controls how fast the character rotates (adjust as needed)
 
 @export var target:Node3D
+@export var is_target:bool = false
+@export var is_range:bool = false #projectile fire
 @export var target_position:Vector3
 var distance_threshold = 1.1  # Stop when this close to the target (in units)
 @export var is_follow:bool = false
+
+@export var is_fire:bool = false
+@export var time_fire:float = 0
+@export var time_fire_max:float = 2
 
 func _enter_tree() -> void:
 	pass
@@ -31,6 +38,19 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
+	if target:
+		target_position = target.global_position
+		is_fire = true
+	
+	if is_fire:
+		if multiplayer.is_server():
+			time_fire += delta
+			if time_fire > time_fire_max:
+				time_fire = 0
+				request_fire()
+				#projectile_fire.rpc(multiplayer.get_remote_sender_id())
+			pass
+	
 	if target_position and is_follow == true:
 		nav.target_position = target_position
 		direction = nav.get_next_path_position() - global_position
@@ -168,10 +188,69 @@ func set_team_color():
 	material.albedo_color = Color(1, 0, 0)
 	# Apply the material to the MeshInstance3D
 	mesh_instance_3d.set_surface_override_material(0, material)
-	
 	pass 
-
 
 #================================================
 # DELETE 
 #================================================
+
+func request_delete()->void:
+	if multiplayer.is_server():
+		delete_node.rpc()
+	else:
+		remote_delete_node.rpc_id(1)
+	#pass
+	
+@rpc("any_peer","call_remote")
+func remote_delete_node()->void:
+	delete_node.rpc()
+	#pass
+	
+@rpc("authority","call_local")
+func delete_node()->void:
+	queue_free()
+	#pass
+
+#================================================
+# 
+#================================================
+func request_fire():
+	if multiplayer.is_server():
+		projectile_fire.rpc(multiplayer.get_unique_id())
+	else:
+		remote_fire.rpc_id(1)
+		#pass
+	#pass
+
+@rpc("any_peer","call_remote")
+func remote_fire():
+	projectile_fire.rpc(multiplayer.get_remote_sender_id())
+	#pass
+	
+@rpc("authority","call_local")
+func projectile_fire(pid:int):
+	#hand_right
+	print("FIRE....")
+	var dummy = DUMMY_BULLET.instantiate()
+	dummy.set_multiplayer_authority(pid)
+	get_tree().current_scene.add_child(dummy)
+	dummy.name = Global.get_add_name()
+	dummy.global_transform = hand_right.global_transform
+	pass
+
+#================================================
+#
+#================================================
+
+func _on_area_3d_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	print("")
+	pass
+	
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("enter: ",body)
+	if body.is_in_group("unit"):
+		if body.team_id != team_id:
+			target = body
+			is_follow = false
+		pass
+	pass

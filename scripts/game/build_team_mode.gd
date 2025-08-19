@@ -116,7 +116,7 @@ func build_building_unit(team_id:int, pos):
 	get_tree().current_scene.get_node("NavigationRegion3D").add_child(dummy)
 	#print("auth > local > team_id:", team_id)
 	#push_error("auth > local > team_id:", team_id)
-	dummy.name = Global.get_add_name()
+	dummy.name = Global.get_count_building_name()
 	#dummy.building_unit.team_id = team_id
 	#dummy.set_multiplayer_authority(1)
 	#dummy.request_set_team_id(team_id) # do not use while in authority will get error

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlsed40jc0lpy"]
+
+[ext_resource type="Script" uid="uid://ms35yerictpk" path="res://prefabs/dummy_bullet/dummy_bullet.gd" id="1_45a6s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hbb02"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45a6s"]
+albedo_color = Color(0.479961, 0, 0.0405017, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_axhwb"]
+material = SubResource("StandardMaterial3D_45a6s")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="DummyBullet" type="Area3D"]
+script = ExtResource("1_45a6s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hbb02")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_axhwb")

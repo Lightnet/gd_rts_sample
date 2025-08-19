@@ -2,6 +2,9 @@ extends Node
 
 var target:Vector3
 var count:int = 100
+var counter_unit:int = 100
+var counter_building:int = 100
+
 @rpc("any_peer", "call_remote", "reliable")
 func notify_message(_message:String)->void:
 	var notifies = get_tree().get_nodes_in_group("notify")
@@ -58,4 +61,11 @@ func generate_random_name(min_length: int = 3, max_length: int = 8) -> String:
 func get_add_name() -> String:
 	count+=1
 	return "obj_"+ str(count)
-	
+
+func get_count_unit_name() -> String:
+	counter_unit+=1
+	return "unit_"+ str(counter_unit)
+
+func get_count_building_name() -> String:
+	counter_building+=1
+	return "building_"+ str(counter_building)

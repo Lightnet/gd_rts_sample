@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn7nyg7tfcupb"]
+
+[ext_resource type="Script" uid="uid://cvwh40f3dm1m4" path="res://prefabs/dummy_unit_test/dummy_unit_test.gd" id="1_g7nyb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_du1o2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g7nyb"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" groups=["unit"]]
+collision_layer = 2
+script = ExtResource("1_g7nyb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_du1o2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_g7nyb")

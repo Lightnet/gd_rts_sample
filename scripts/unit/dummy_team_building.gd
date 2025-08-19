@@ -86,7 +86,7 @@ func create_unit():
 	#dummy.unit_data.team_id = team_id
 	#dummy.team_id = team_id
 	#await get_tree().create_timer(0.5).timeout
-	dummy.name = Global.get_add_name()
+	dummy.name = Global.get_count_unit_name()
 	#dummy.set_team_id.rpc(team_id)
 	#dummy.request_set_team_id.rpc(team_id)
 	dummy.request_set_team_id(team_id)
