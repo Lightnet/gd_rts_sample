@@ -74,8 +74,11 @@
 	- [x] select move unit
 	- [x] spawn unit
 	- [x] team unit
-	- [ ] attack unit
-	
+	- [x] attack unit (wip)
+	- [x] projectile fire
+- [ ] helper
+	- [x] generate name id for sync
+		- to deal with out sync name.
 ## network
 - [ ] build base
 - [x] select move unit

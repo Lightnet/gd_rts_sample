@@ -640,7 +640,7 @@ camera = NodePath("../../Camera3D")
 [node name="TeamMode" type="Node" parent="." groups=["gamemode"]]
 script = ExtResource("15_pbhiv")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("17_tvv1p")]
+[node name="DummyUnitTest" parent="." instance=ExtResource("17_tvv1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47975, 0.5, 8.8063)
 
 [connection signal="pressed" from="CanvasLayer/UICommandCenter/UI_BuildingInfo/VBoxContainer/HBoxContainer3/btn_build" to="CanvasLayer/UICommandCenter/UI_BuildingInfo" method="_on_btn_build_pressed"]

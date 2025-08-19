@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_g7nyb"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" groups=["unit"]]
+[node name="DummyUnitTest" type="CharacterBody3D" groups=["unit"]]
 collision_layer = 2
 script = ExtResource("1_g7nyb")
 

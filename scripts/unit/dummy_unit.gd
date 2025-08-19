@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	if target:
 		target_position = target.global_position
 		is_fire = true
+		target_rotate_dir(delta)
 	
 	if is_fire:
 		if multiplayer.is_server():
@@ -56,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		direction = nav.get_next_path_position() - global_position
 		direction = direction.normalized()
 		
-		 # Rotate to face the direction of movement
+		# Rotate to face the direction of movement
 		if direction.length() > 0:  # Ensure there's a valid direction to rotate toward
 			var target_rotation = atan2(direction.x, direction.z)  # Calculate angle in XZ plane
 			#print("target_rotation: ", target_rotation)
@@ -89,8 +90,20 @@ func _physics_process(delta: float) -> void:
 		if distance < distance_threshold:
 			is_follow = false
 			#print("target_position stop")
-			#pass
-	#pass
+
+func target_rotate_dir(_delta):
+	var direction = target.global_position - global_position
+	direction = direction.normalized()
+	if direction.length() > 0:  # Ensure there's a valid direction to rotate toward
+		var target_rotation = atan2(direction.x, direction.z)  # Calculate angle in XZ plane
+		#print("target_rotation: ", target_rotation)
+		target_rotation = target_rotation + deg_to_rad(180) #match face -z direction
+		var current_rotation = rotation.y
+		# Smoothly interpolate the Y rotation
+		#rotation.y = lerp_angle(current_rotation, target_rotation, delta * ROTATION_SPEED)
+		rotation.y = target_rotation
+	
+	pass
 
 #================================================
 # FOLLOW
@@ -212,7 +225,7 @@ func delete_node()->void:
 	#pass
 
 #================================================
-# 
+# PROEJCTILE FIRE
 #================================================
 func request_fire():
 	if multiplayer.is_server():
@@ -235,6 +248,7 @@ func projectile_fire(pid:int):
 	dummy.set_multiplayer_authority(pid)
 	get_tree().current_scene.add_child(dummy)
 	dummy.name = Global.get_add_name()
+	dummy.team_id = 1
 	dummy.global_transform = hand_right.global_transform
 	pass
 
